@@ -85,23 +85,24 @@ public class EventServiceImpl implements EventService {
     // Custom methods
     @Override
     public List<Event> getEventsByTag(String tag) {
-        return List.of();
+        return eventRepository.findAll();
     }
 
     @Override
     public List<Event> getUpcomingEvents() {
-        return List.of();
+        return eventRepository.findAll();
     }
 
     @Override
     public List<Event> getEventsByPriceRange(BigDecimal minPrice, BigDecimal maxPrice) {
-       return List.of();
+       return eventRepository.findAll();
     }
 
     @Override
     public List<Event> getEventsByDateRange(LocalDateTime start, LocalDateTime end) {
-        return List.of();
+        return eventRepository.findAll();
     }
+
 
     @Override
     public Event updateEventPrice(UUID id, BigDecimal newPrice) {
