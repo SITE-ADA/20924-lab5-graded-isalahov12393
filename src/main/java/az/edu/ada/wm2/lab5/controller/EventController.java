@@ -95,4 +95,49 @@ public class EventController {
         }
     }
 
+    // get events by tag
+    @GetMapping
+    public ResponseEntity<List<Event>> getEventsByTag(@RequestParam String tag) {
+        try {
+            List<Event> events = eventService.getEventsByTag(tag);
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //get upcoming events
+    @GetMapping
+    public ResponseEntity<List<Event>> getUpcomingEvents() {
+        try {
+            List<Event> events = eventService.getUpcomingEvents();
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //get events by price range
+    @GetMapping
+    public ResponseEntity<List<Event>> getEventsByPriceRange(BigDecimal minPrice, BigDecimal maxPrice) {
+        try {
+            List<Event> events = eventService.getEventsByPriceRange(minPrice, maxPrice);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //get events by date range
+    @GetMapping
+    public ResponseEntity<List<Event>> getEventsByDateRange(LocalDateTime start, LocalDateTime end) {
+        try {
+            List<Event> events = eventService.getEventsByDateRange(start, end);
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
